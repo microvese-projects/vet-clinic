@@ -18,3 +18,78 @@ VALUES
   ('Boarmon', '2005-06-07', 7, true, 20.4),
   ('Blossom', '1998-08-13', 3, true, 17),
   ('Ditto', '2022-05-14', 4, true, 22);
+
+BEGIN;
+INSERT INTO owners 
+  (FULL_NAME, AGE)
+VALUES
+  ('Sam Smith', 34),
+  ('Jennifer Orwell', 19),
+  ('Bob', 45),
+  ('Melody Pond', 77),
+  ('Dean Winchester', 14),
+  ('Jodie Whittaker', 38);
+COMMIT;
+
+BEGIN;
+INSERT INTO species
+  (name)
+VALUES
+  ('Pokemon'),
+  ('Digimon');
+COMMIT;
+
+-- add species id to animals table 
+BEGIN;
+UPDATE animals
+SET species_id = 2
+WHERE NAME LIKE '%mon';
+
+UPDATE animals 
+SET species_id = 1
+WHERE species_id IS NULL;
+COMMIT;
+
+-- Update owner ids
+BEGIN;
+-- sam smith
+UPDATE animals 
+SET owner_id = (
+    SELECT id
+    FROM owners
+    WHERE full_name = 'Sam Smith'
+)
+WHERE name IN ('Agumon');
+-- jennifer orwell
+UPDATE animals 
+SET owner_id = (
+    SELECT id
+    FROM owners
+    WHERE full_name = 'Jennifer Orwell'
+)
+WHERE name IN ('Gabumon', 'Pikachu');
+-- Bob
+UPDATE animals 
+SET owner_id = (
+    SELECT id
+    FROM owners
+    WHERE full_name = 'Bob'
+)
+WHERE name IN ('Devimon', 'Plantmon');
+-- Melody Pond
+UPDATE animals 
+SET owner_id = (
+    SELECT id
+    FROM owners
+    WHERE full_name = 'Melody Pond'
+)
+WHERE name IN ('Charmander', 'Squirtle', 'Blossom');
+-- Dean Winchester
+UPDATE animals 
+SET owner_id = (
+    SELECT id
+    FROM owners
+    WHERE full_name = 'Dean Winchester'
+)
+WHERE name IN ('Angemon', 'Boarmon');
+COMMIT;
