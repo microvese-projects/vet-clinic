@@ -38,3 +38,14 @@ VALUES
   ('Pokemon'),
   ('Digimon');
 COMMIT;
+
+-- add species id to animals table 
+BEGIN;
+UPDATE animals
+SET species_id = 2
+WHERE NAME LIKE '%mon';
+
+UPDATE animals 
+SET species_id = 1
+WHERE species_id IS NULL;
+COMMIT;
