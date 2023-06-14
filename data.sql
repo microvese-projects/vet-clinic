@@ -30,3 +30,11 @@ VALUES
   ('Dean Winchester', 14),
   ('Jodie Whittaker', 38);
 COMMIT;
+
+BEGIN;
+INSERT INTO species
+  (name)
+VALUES
+  ('Pokemon'),
+  ('Digimon');
+COMMIT;
