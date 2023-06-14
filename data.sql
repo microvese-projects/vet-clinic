@@ -18,3 +18,10 @@ VALUES
   ('Boarmon', '2005-06-07', 7, true, 20.4),
   ('Blossom', '1998-08-13', 3, true, 17),
   ('Ditto', '2022-05-14', 4, true, 22);
+
+-- CORRECT DATA
+BEGIN;
+UPDATE animals
+SET weight_kg = weight_kg * -1
+WHERE name IN ('Charmander', 'Plantmon', 'Squirtle', 'Angemon');
+COMMIT;
