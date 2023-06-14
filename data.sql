@@ -49,3 +49,47 @@ UPDATE animals
 SET species_id = 1
 WHERE species_id IS NULL;
 COMMIT;
+
+-- Update owner ids
+BEGIN;
+-- sam smith
+UPDATE animals 
+SET owner_id = (
+    SELECT id
+    FROM owners
+    WHERE full_name = 'Sam Smith'
+)
+WHERE name IN ('Agumon');
+-- jennifer orwell
+UPDATE animals 
+SET owner_id = (
+    SELECT id
+    FROM owners
+    WHERE full_name = 'Jennifer Orwell'
+)
+WHERE name IN ('Gabumon', 'Pikachu');
+-- Bob
+UPDATE animals 
+SET owner_id = (
+    SELECT id
+    FROM owners
+    WHERE full_name = 'Bob'
+)
+WHERE name IN ('Devimon', 'Plantmon');
+-- Melody Pond
+UPDATE animals 
+SET owner_id = (
+    SELECT id
+    FROM owners
+    WHERE full_name = 'Melody Pond'
+)
+WHERE name IN ('Charmander', 'Squirtle', 'Blossom');
+-- Dean Winchester
+UPDATE animals 
+SET owner_id = (
+    SELECT id
+    FROM owners
+    WHERE full_name = 'Dean Winchester'
+)
+WHERE name IN ('Angemon', 'Boarmon');
+COMMIT;
