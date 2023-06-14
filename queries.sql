@@ -60,3 +60,10 @@ FROM animals
 JOIN species
 ON animals.species_id = species.id
 WHERE species.name = 'Pokemon';
+
+-- How many animals are there per species?
+SELECT species.name as species, COUNT(animals.name)
+FROM animals
+JOIN species
+ON animals.species_id = species.id
+GROUP BY species.name;
