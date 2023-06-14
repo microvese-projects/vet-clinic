@@ -9,6 +9,11 @@ SELECT * FROM animals WHERE neutered=true;
 SELECT * FROM animals WHERE name!='Gabumon';
 SELECT * FROM animals WHERE weight_kg >= 10.4 AND weight_kg <= 17.3;
 
+BEGIN;
+UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon';
+UPDATE animals SET species = 'pokemon' WHERE species IS NULL;
+COMMIT;
+
 -- Transactions
 BEGIN;
 DELETE FROM animals WHERE date_of_birth >= '2022-01-01';
