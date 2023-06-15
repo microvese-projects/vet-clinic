@@ -100,3 +100,14 @@ ON owners.id = animals.owner_id
 GROUP BY owners.full_name
 ORDER BY COUNT(animals.name) DESC
 LIMIT 1;
+
+-- Last animal seen by william tatcher
+SELECT animals.name AS animal_name
+FROM animals
+CROSS JOIN visits
+CROSS JOIN vets
+WHERE vets.name = 'WILLIAM TATCHER'
+AND vets.id = visits.vet_id
+AND animals.id = visits.animal_id
+ORDER BY visit_date DESC
+LIMIT 1;
