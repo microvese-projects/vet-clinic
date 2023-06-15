@@ -93,3 +93,14 @@ SET owner_id = (
 )
 WHERE name IN ('Angemon', 'Boarmon');
 COMMIT;
+
+-- insert vets data
+BEGIN;
+INSERT INTO vets
+  (NAME, AGE, DATE_OF_GRADUATION)
+VALUES
+  ('WILLIAM TATCHER', 45, '2000-04-23'),
+  ('MAISY SMITH', 26, '2019-01-17'),
+  ('STEPHANIE MENDEZ', 64, '1981-05-04'),
+  ('JACK HARKNESS', 38, '2008-06-08');
+COMMIT;
