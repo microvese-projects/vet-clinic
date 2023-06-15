@@ -104,3 +104,16 @@ VALUES
   ('STEPHANIE MENDEZ', 64, '1981-05-04'),
   ('JACK HARKNESS', 38, '2008-06-08');
 COMMIT;
+
+-- insert specializations data 
+BEGIN;
+INSERT INTO specializations
+  (SPECIES_ID, VET_ID)
+SELECT species.id, vets.id
+FROM species
+CROSS JOIN vets
+WHERE 
+  species.name = 'Pokemon' AND (vets.name = 'WILLIAM TATCHER' OR vets.name = 'STEPHANIE MENDEZ')
+OR 
+  species.name = 'Digimon' AND (vets.name = 'STEPHANIE MENDEZ' OR vets.name = 'JACK HARKNESS');
+COMMIT;
