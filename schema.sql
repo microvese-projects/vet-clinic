@@ -42,3 +42,9 @@ CREATE TABLE VETS(
     DATE_OF_GRADUATION DATE,
     PRIMARY KEY(ID)
 );
+
+-- create specializations table
+CREATE TABLE SPECIALIZATIONS(
+    SPECIES_ID INT,
+    VET_ID INT
+);
