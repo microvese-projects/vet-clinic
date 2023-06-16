@@ -151,3 +151,13 @@ WHERE visits.animal_id = animals.id
 GROUP BY animals.name
 ORDER BY COUNT(visit_date) DESC
 LIMIT 1;
+
+-- Who was Maisy Smith's first visit?
+SELECT animals.name, visit_date
+FROM animals
+CROSS JOIN visits
+CROSS JOIN vets
+WHERE vets.name = 'MAISY SMITH' 
+  AND visits.vet_id = vets.id
+  AND animals.id = visits.animal_id
+ORDER BY visit_date;
