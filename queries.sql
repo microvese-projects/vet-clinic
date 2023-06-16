@@ -174,10 +174,10 @@ SELECT
   weight_kg,
   owners.full_name AS owners_name,
   owners.age AS owners_age,
+  visit_date,
   vets.name AS seen_vets_name,
   vets.age AS vets_age,
-  vets.date_of_graduation,
-  visit_date
+  vets.date_of_graduation
 FROM animals
 CROSS JOIN owners
 CROSS JOIN visits
