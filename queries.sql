@@ -107,7 +107,20 @@ FROM animals
 CROSS JOIN visits
 CROSS JOIN vets
 WHERE vets.name = 'WILLIAM TATCHER'
-AND vets.id = visits.vet_id
-AND animals.id = visits.animal_id
+  AND vets.id = visits.vet_id
+  AND animals.id = visits.animal_id
 ORDER BY visit_date DESC
 LIMIT 1;
+
+-- How many different animals did Stephanie Mendez see?
+SELECT COUNT(*) AS group_count
+FROM (
+  SELECT COUNT(animals.name) AS count
+  FROM animals
+  CROSS JOIN visits
+  CROSS JOIN vets
+  WHERE vets.name = 'STEPHANIE MENDEZ'
+    AND vets.id = visits.vet_id
+    AND visits.animal_id = animals.id
+  GROUP BY animals.name
+) AS subquery;
