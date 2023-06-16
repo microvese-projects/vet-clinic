@@ -124,3 +124,11 @@ FROM (
     AND visits.animal_id = animals.id
   GROUP BY animals.name
 ) AS subquery;
+
+-- List all vets and their specialties, including vets with no specialties.
+SELECT vets.name AS vet_name, species.name AS species_name
+FROM vets
+FULL JOIN specializations
+ON specializations.vet_id = vets.id
+FULL JOIN species
+ON species_id = species.id;
