@@ -93,3 +93,203 @@ SET owner_id = (
 )
 WHERE name IN ('Angemon', 'Boarmon');
 COMMIT;
+
+-- insert vets data
+BEGIN;
+INSERT INTO vets
+  (NAME, AGE, DATE_OF_GRADUATION)
+VALUES
+  ('WILLIAM TATCHER', 45, '2000-04-23'),
+  ('MAISY SMITH', 26, '2019-01-17'),
+  ('STEPHANIE MENDEZ', 64, '1981-05-04'),
+  ('JACK HARKNESS', 38, '2008-06-08');
+COMMIT;
+
+-- insert specializations data 
+BEGIN;
+INSERT INTO specializations
+  (SPECIES_ID, VET_ID)
+SELECT species.id, vets.id
+FROM species
+CROSS JOIN vets
+WHERE 
+  species.name = 'Pokemon' AND (vets.name = 'WILLIAM TATCHER' OR vets.name = 'STEPHANIE MENDEZ')
+OR 
+  species.name = 'Digimon' AND (vets.name = 'STEPHANIE MENDEZ' OR vets.name = 'JACK HARKNESS');
+COMMIT;
+
+-- insert visitation data
+
+-- agumon and william
+BEGIN;
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2020-05-24'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Agumon' AND vets.name = 'WILLIAM TATCHER';
+-- agumon and stephanie
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2020-07-22'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Agumon' AND vets.name = 'STEPHANIE MENDEZ';
+-- GABUMON AND JACK
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2021-02-02'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Gabumon' AND vets.name = 'JACK HARKNESS';
+-- PIKACHU AND MAISY
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2020-01-05'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Pikachu' AND vets.name = 'MAISY SMITH';
+
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2020-03-08'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Pikachu' AND vets.name = 'MAISY SMITH';
+
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2020-03-14'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Pikachu' AND vets.name = 'MAISY SMITH';
+
+-- DEVIMON AND STEPHANIE
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2021-05-04'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Devimon' AND vets.name = 'STEPHANIE MENDEZ';
+
+-- CHARMANDER AND JACK
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2021-02-24'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Charmander' AND vets.name = 'JACK HARKNESS';
+
+-- PLANTMON AND MAISY
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2019-12-21'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Plantmon' AND vets.name = 'MAISY SMITH';
+
+-- PLANTMON AND WILLIAM 
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2020-08-10'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Plantmon' AND vets.name = 'WILLIAM TATCHER';
+
+-- PLANTMON AND MAISY 
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2021-04-07'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Plantmon' AND vets.name = 'MAISY SMITH';
+
+-- SQUIRTLE AND STEPHANIE
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2019-09-29'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Squirtle' AND vets.name = 'STEPHANIE MENDEZ';
+
+-- ANGEMON AND JACK
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2020-10-03'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Angemon' AND vets.name = 'JACK HARKNESS';
+
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2020-11-04'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Angemon' AND vets.name = 'JACK HARKNESS';
+
+-- BOARMON AND MAISY
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2019-01-24'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Boarmon' AND vets.name = 'MAISY SMITH';
+
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2019-05-15'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Boarmon' AND vets.name = 'MAISY SMITH';
+
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2020-02-27'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Boarmon' AND vets.name = 'MAISY SMITH';
+
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2020-08-03'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Boarmon' AND vets.name = 'MAISY SMITH';
+
+-- BLOSSOM AND STEPHANIE
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2020-05-24'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Blossom' AND vets.name = 'STEPHANIE MENDEZ';
+
+-- BLOSSOM AND WILLIAM
+INSERT INTO visits 
+  (ANIMAL_ID, VET_ID, VISIT_DATE)
+SELECT animals.id, vets.id, '2021-01-11'
+FROM animals
+CROSS JOIN vets
+WHERE 
+  animals.name = 'Blossom' AND vets.name = 'WILLIAM TATCHER';
+
+COMMIT;
