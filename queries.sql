@@ -160,4 +160,32 @@ CROSS JOIN vets
 WHERE vets.name = 'MAISY SMITH' 
   AND visits.vet_id = vets.id
   AND animals.id = visits.animal_id
-ORDER BY visit_date;
+ORDER BY visit_date
+LIMIT 1;
+
+-- Details for most recent visit: animal information, vet information, and date of visit.
+SELECT 
+  animals.id AS animal_id,
+  animals.name AS animal_name,
+  species.name AS species,
+  date_of_birth,
+  escape_attempts,
+  neutered,
+  weight_kg,
+  owners.full_name AS owners_name,
+  owners.age AS owners_age,
+  vets.name AS seen_vets_name,
+  vets.age AS vets_age,
+  vets.date_of_graduation,
+  visit_date
+FROM animals
+CROSS JOIN owners
+CROSS JOIN visits
+CROSS JOIN vets
+CROSS JOIN species
+WHERE visits.vet_id = vets.id
+  AND animals.id = visits.animal_id
+  AND species.id = animals.species_id
+  AND owners.id = animals.owner_id
+ORDER BY visit_date DESC
+LIMIT 1;
